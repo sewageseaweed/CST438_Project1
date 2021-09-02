@@ -3,30 +3,29 @@ package com.example.cst438_project1;
 import com.google.gson.annotations.SerializedName;
 
 public class Book {
-    @SerializedName("id")
-    private String mId;
+    private String id;
 
     @SerializedName("items: volumeInfo: title")
-    private String mTitle;
+    private String title;
 
     @SerializedName("items: volumeInfo: authors")
-    private String[] mAuthors;
+    private String[] authors;
 
     public Book(String id, String title, String[] authors){
-        mId = id;
-        mTitle = title;
-        mAuthors = authors;
+        this.id = id;
+        this.title = title;
+        this.authors = authors;
     }
 
-    public String getmId() {
-        return mId;
+    public String getId() {
+        return id;
     }
 
-    public String getmTitle() {
-        return mTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public String[] getmAuthors() {
-        return mAuthors;
+    public String[] getAuthors() {
+        return authors;
     }
 }

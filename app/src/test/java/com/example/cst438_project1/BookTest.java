@@ -40,11 +40,11 @@ public class BookTest {
                 List<Book> books = response.body();
                 for(int i = 0; i < 2; i++) {
                     String content = "";
-                    content += "ID: " + books.get(i).getmId() + "\n";
-                    content += "Tite: " + books.get(i).getmId() + "\n";
+                    content += "ID: " + books.get(i).getId() + "\n";
+                    content += "Tite: " + books.get(i).getId() + "\n";
                     content += "Authors: ";
-                    for(int j = books.get(i).getmAuthors().length - 1; i > -1; i--) {
-                        content += books.get(i).getmAuthors()[j];
+                    for(int j = books.get(i).getAuthors().length - 1; i > -1; i--) {
+                        content += books.get(i).getAuthors()[j];
                         if (j - 1 > -1) {
                             content += ", ";
                         } else {
