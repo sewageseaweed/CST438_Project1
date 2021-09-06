@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/item_textView_titlePlaceHolder"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:maxLines="1"
             android:layout_toStartOf="@id/item_button"
             android:ellipsize="end"/>
@@ -33,7 +33,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/item_textView_authorPlaceHolder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:maxLines="1"
+            android:layout_toStartOf="@id/item_button"
+            android:ellipsize="end"
             android:layout_below="@id/item_title"/>
+
+        <TextView
+            android:id="@+id/item_quote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/item_textView_quotePlaceHolder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:layout_below="@id/item_author"/>
 
     </RelativeLayout>
 

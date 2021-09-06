@@ -3,5 +3,6 @@
 
     <string name="item_textView_titlePlaceHolder">Title of Item</string>
     <string name="item_textView_authorPlaceHolder">Author of Item</string>
+    <string name="item_textView_quotePlaceHolder">Quote</string>
     <string name="item_button_text">star</string>
 </resources>
