@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CST438_Project1</string>
+
+    <string name="textView_titlePlaceHolder">Title of Item</string>
+    <string name="textView_authorPlaceHolder">Author of Item</string>
+    <string name="recycler_button_text">star</string>
 </resources>
