@@ -16,13 +16,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="@string/recycler_button_text"/>
+            android:text="@string/item_button_text"/>
 
         <TextView
             android:id="@+id/item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/textView_titlePlaceHolder"
+            android:text="@string/item_textView_titlePlaceHolder"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:maxLines="1"
             android:layout_toStartOf="@id/item_button"
@@ -32,7 +32,7 @@
             android:id="@+id/item_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/textView_authorPlaceHolder"
+            android:text="@string/item_textView_authorPlaceHolder"
             android:layout_below="@id/item_title"/>
 
     </RelativeLayout>
