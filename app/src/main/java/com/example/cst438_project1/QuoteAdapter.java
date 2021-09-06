@@ -1,5 +1,6 @@
 package com.example.cst438_project1;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,29 +17,42 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteHolder>
     @NonNull
     @Override
     public QuoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from((parent.getContext()))
+                .inflate(R.layout.item, parent, false);
+
+        return new QuoteHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull QuoteHolder holder, int position) {
+        Quote currentQuote = quotes.get(position);
 
+        holder.textViewAnime.setText(currentQuote.getAnime());
+        holder.textViewCharacter.setText(currentQuote.getCharacter());
+        holder.textViewQuote.setText(currentQuote.getQuote());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return quotes.size();
+    }
+
+    public void setQuotes(List<Quote> quotes) {
+        this.quotes = quotes;
+
+        notifyDataSetChanged();
     }
 
     class QuoteHolder extends RecyclerView.ViewHolder {
-        private TextView textViewTitle;
-        private TextView textViewAuthor;
+        private TextView textViewAnime;
+        private TextView textViewCharacter;
         private TextView textViewQuote;
 
         public QuoteHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewTitle = itemView.findViewById(R.id.item_anime);
-            textViewAuthor = itemView.findViewById(R.id.item_character);
+            textViewAnime = itemView.findViewById(R.id.item_anime);
+            textViewCharacter = itemView.findViewById(R.id.item_character);
             textViewQuote = itemView.findViewById(R.id.item_quote);
         }
     }
