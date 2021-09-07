@@ -34,6 +34,7 @@ public class QuoteTest {
             public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
                 if(!response.isSuccessful()) {
                     Log.e("QuoteTest", "Code: " + response.code());
+                    fail(response.message());
                     return;
                 }
 
@@ -74,6 +75,7 @@ public class QuoteTest {
             public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
                 if(!response.isSuccessful()) {
                     Log.e("QuoteTest", "Code: " + response.code());
+                    fail(response.message());
                     return;
                 }
 
