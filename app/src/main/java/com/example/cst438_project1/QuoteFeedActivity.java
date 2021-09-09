@@ -16,7 +16,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
 
         final QuoteAdapter adapter = new QuoteAdapter();
 
