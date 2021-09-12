@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class QuoteFeedActivity extends AppCompatActivity {
@@ -21,5 +23,11 @@ public class QuoteFeedActivity extends AppCompatActivity {
         final QuoteAdapter adapter = new QuoteAdapter();
 
         recyclerView.setAdapter(adapter);
+    }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, QuoteFeedActivity.class);
+
+        return intent;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.cst438_project1;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -17,17 +18,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuoteTest {
 
-    @Test
-    public void getRandomQuotes_isCorrect(){
-
+    @Before
+    public AnimechanApi buildAnimechanApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://animechan.vercel.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        AnimechanApi animechanApi = retrofit.create(AnimechanApi.class);
+        return retrofit.create(AnimechanApi.class);
+    }
 
-        Call<List<Quote>> call = animechanApi.getRandomQuotes();
+    @Test
+    public void getRandomQuotes_isCorrect() {
+        Call<List<Quote>> call = buildAnimechanApi().getRandomQuotes();
 
         call.enqueue(new Callback<List<Quote>>() {
             @Override
@@ -39,11 +42,10 @@ public class QuoteTest {
                 }
 
                 List<Quote> quotes = response.body();
-                for(int i = 0; i < 2; i++) {
-                    String content = "";
-                    content += "Anime Title: " + quotes.get(i).getAnime() + "\n";
-                    content += "Character: " + quotes.get(i).getCharacter() + "\n";
-                    content += "Quote: " + quotes.get(i).getQuote() + "\n\n";
+                for (Quote quote : quotes) {
+                    assertNotNull(quote.getAnime());
+                    assertNotNull(quote.getCharacter());
+                    assertNotNull(quote.getQuote());
                 }
 
                 assertEquals(10, quotes.size());
@@ -61,31 +63,24 @@ public class QuoteTest {
     public void getQuoteByAnime_isCorrect(){
         String animeToCheck = "Shingeki no Kyojin";
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://animechan.vercel.app/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        AnimechanApi animechanApi = retrofit.create(AnimechanApi.class);
-
-        Call<List<Quote>> call = animechanApi.getQuotesByAnime(animeToCheck);
+        Call<List<Quote>> call = buildAnimechanApi().getQuotesByAnime(animeToCheck);
 
         call.enqueue(new Callback<List<Quote>>() {
             @Override
             public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
                 if(!response.isSuccessful()) {
-                    Log.e("QuoteTest", "Code: " + response.code());
+                    Log.e("getQuoteByAnimeTest", "Code: " + response.code());
                     fail(response.message());
                     return;
                 }
 
                 List<Quote> quotes = response.body();
-                for(int i = 0; i < 2; i++) {
-                    String content = "";
-                    content += "Anime Title: " + quotes.get(i).getAnime() + "\n";
-                    assertTrue(quotes.get(i).getAnime().equals(animeToCheck));
-                    content += "Character: " + quotes.get(i).getCharacter() + "\n";
-                    content += "Quote: " + quotes.get(i).getQuote() + "\n\n";
+                for (Quote quote : quotes) {
+//                    String content = "";
+//                    content += "Anime Title: " + quotes.get(i).getAnime() + "\n";
+                    assertTrue(quote.getAnime().equals(animeToCheck));
+//                    content += "Character: " + quotes.get(i).getCharacter() + "\n";
+//                    content += "Quote: " + quotes.get(i).getQuote() + "\n\n";
                 }
 
                 assertTrue(quotes.size() <= 10);
