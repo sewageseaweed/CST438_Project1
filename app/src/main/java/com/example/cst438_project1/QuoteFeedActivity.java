@@ -8,6 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class QuoteFeedActivity extends AppCompatActivity {
 
     @Override
@@ -29,5 +32,14 @@ public class QuoteFeedActivity extends AppCompatActivity {
         Intent intent = new Intent(context, QuoteFeedActivity.class);
 
         return intent;
+    }
+
+    public AnimechanApi buildAnimechanApi() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://animechan.vercel.app/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(AnimechanApi.class);
     }
 }

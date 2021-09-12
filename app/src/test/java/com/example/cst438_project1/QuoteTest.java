@@ -17,8 +17,19 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuoteTest {
+    @Test
+    public void quoteConstructor_isCorrect() {
+        String anime = "Sword Art Online";
+        String character = "Kazuto Kirigaya";
+        String body = "Whether here or in the real world, you can cry when it hurts. There's no rule that you can't show feelings just because it's a game.";
+        Quote quote = new Quote(anime, character, body);
 
-    @Before
+        assertNotNull(quote);
+        assertEquals(anime, quote.getAnime());
+        assertEquals(character, quote.getCharacter());
+        assertEquals(body, quote.getQuote());
+    }
+
     public AnimechanApi buildAnimechanApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://animechan.vercel.app/api/")
@@ -36,7 +47,7 @@ public class QuoteTest {
             @Override
             public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
                 if(!response.isSuccessful()) {
-                    Log.e("QuoteTest", "Code: " + response.code());
+                    Log.e("getRandomQuotesTest", "Code: " + response.code());
                     fail(response.message());
                     return;
                 }
@@ -53,7 +64,7 @@ public class QuoteTest {
 
             @Override
             public void onFailure(Call<List<Quote>> call, Throwable t) {
-                Log.e("QuoteTest", t.getMessage());
+                Log.e("getRandomQuotesTest", t.getMessage());
                 fail(t.getMessage());
             }
         });
@@ -88,7 +99,42 @@ public class QuoteTest {
 
             @Override
             public void onFailure(Call<List<Quote>> call, Throwable t) {
-                Log.e("QuoteTest", t.getMessage());
+                Log.e("getQuoteByAnimeTest", t.getMessage());
+                fail(t.getMessage());
+            }
+        });
+    }
+
+    @Test
+    public void getQuoteByCharacter_isCorrect(){
+        String characterToCheck = "Lelouch Lamperouge";
+
+        Call<List<Quote>> call = buildAnimechanApi().getQuotesByAnime(characterToCheck);
+
+        call.enqueue(new Callback<List<Quote>>() {
+            @Override
+            public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
+                if(!response.isSuccessful()) {
+                    Log.e("getQuoteByCharacterTest", "Code: " + response.code());
+                    fail(response.message());
+                    return;
+                }
+
+                List<Quote> quotes = response.body();
+                for (Quote quote : quotes) {
+//                    String content = "";
+//                    content += "Anime Title: " + quotes.get(i).getAnime() + "\n";
+                    assertTrue(quote.getCharacter().equals(characterToCheck));
+//                    content += "Character: " + quotes.get(i).getCharacter() + "\n";
+//                    content += "Quote: " + quotes.get(i).getQuote() + "\n\n";
+                }
+
+                assertTrue(quotes.size() <= 10);
+            }
+
+            @Override
+            public void onFailure(Call<List<Quote>> call, Throwable t) {
+                Log.e("getQuoteByCharacterTest", t.getMessage());
                 fail(t.getMessage());
             }
         });
