@@ -7,11 +7,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuoteFeedActivity extends AppCompatActivity {
+    public static final String ACTIVITY_LABEL = "QUOTE_FEED_ACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         final QuoteAdapter adapter = new QuoteAdapter();
 
         recyclerView.setAdapter(adapter);
+        getRandomQuotes(adapter);
     }
 
     public static Intent getIntent(Context context) {
@@ -34,12 +42,34 @@ public class QuoteFeedActivity extends AppCompatActivity {
         return intent;
     }
 
-    public AnimechanApi buildAnimechanApi() {
+    private AnimechanApi buildAnimechanApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://animechan.vercel.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         return retrofit.create(AnimechanApi.class);
+    }
+
+    private void getRandomQuotes(QuoteAdapter adapter) {
+        Call<List<Quote>> call = buildAnimechanApi().getRandomQuotes();
+
+        call.enqueue(new Callback<List<Quote>>() {
+            @Override
+            public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
+                if(!response.isSuccessful()) {
+                    Log.e(ACTIVITY_LABEL, "getRandomQuotes: Code: " + response.code());
+                    return;
+                }
+
+                List<Quote> quotes = response.body();
+                adapter.setQuotes(quotes);
+            }
+
+            @Override
+            public void onFailure(Call<List<Quote>> call, Throwable t) {
+                Log.e(ACTIVITY_LABEL, "getRandomQuotes: Code: " + t.getMessage());
+            }
+        });
     }
 }
