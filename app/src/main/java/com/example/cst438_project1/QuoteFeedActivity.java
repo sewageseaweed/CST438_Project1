@@ -58,7 +58,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
                 if(!response.isSuccessful()) {
-                    Log.e(ACTIVITY_LABEL, "getRandomQuotes: Code: " + response.code());
+                    Log.e(ACTIVITY_LABEL, "onResponse: getRandomQuotes: Code: " + response.code());
                     return;
                 }
 
@@ -68,7 +68,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Quote>> call, Throwable t) {
-                Log.e(ACTIVITY_LABEL, "getRandomQuotes: Code: " + t.getMessage());
+                Log.e(ACTIVITY_LABEL, "onFailure: getRandomQuotes: Code: " + t.getMessage());
             }
         });
     }
