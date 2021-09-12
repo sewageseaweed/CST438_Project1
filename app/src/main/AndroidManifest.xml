@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CST438_Project1">
         <activity
-            android:name=".BookFeedActivity"
+            android:name=".QuoteFeedActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
