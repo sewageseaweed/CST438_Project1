@@ -5,4 +5,11 @@
     <string name="item_textView_authorPlaceHolder">Author of Item</string>
     <string name="item_textView_quotePlaceHolder">Quote</string>
     <string name="item_button_text">star</string>
+
+    <string name="quoteFeed_textView_title_10random">10 Random Quotes</string>
+    <string name="quoteFeed_textView_title_byAnime">Anime Title</string>
+    <string name="quoteFeed_textView_title_byCharacter">Character Name</string>
+    <string name="quoteFeed_textView_Searchby_prompt">Search by: </string>
+    <string name="quoteFeed_button_byAnime">Anime</string>
+    <string name="quoteFeed_button_byCharacter">Character</string>
 </resources>

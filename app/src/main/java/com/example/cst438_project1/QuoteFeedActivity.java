@@ -23,12 +23,11 @@ public class QuoteFeedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_feed);
+        setContentView(R.layout.activity_quote_feed);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.quoteFeed_recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
-//        recyclerView.setHasFixedSize(true);
 
         final QuoteAdapter adapter = new QuoteAdapter();
 
