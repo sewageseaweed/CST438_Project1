@@ -13,6 +13,31 @@
 
     <string name="quoteFeedByAnime_textView_title">Quotes by Anime</string>
     <string name="quoteFeedByAnime_button_10random">10 Rand</string>
+    <string-array name="anime">
+        <item>Accel World</item>
+        <item>Ao no Exorcist</item>
+        <item>Assassination Classroom</item>
+        <item>Bleach</item>
+        <item>Boku no Hero Academia</item>
+        <item>Bungou Stray Dogs</item>
+        <item>Cardcaptor Sakura</item>
+        <item>Claymore</item>
+        <item>Fairy Tail</item>
+        <item>Fate/stay night</item>
+        <item>Fruits Basket</item>
+        <item>Ghost in the Shell</item>
+        <item>Gurren Lagann</item>
+        <item>Hellsing</item>
+        <item>Howl's Moving Castle</item>
+        <item>JoJo's Bizarre Adventure</item>
+        <item>Kingdom Hearts</item>
+        <item>No Game No Life</item>
+        <item>One Piece</item>
+        <item>Shingeki no Kyojin</item>
+        <item>Sword Art Online</item>
+        <item>Trigun</item>
+        <item>xxxHOLiC</item>
+    </string-array>
 
     <string-array name="characters">
         <item>Naruto</item>
