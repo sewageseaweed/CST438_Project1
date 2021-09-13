@@ -1,5 +1,7 @@
 package com.example.cst438_project1;
 
+import static com.example.cst438_project1.QuoteFeedActivity.buildAnimechanApi;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,18 +32,9 @@ public class QuoteTest {
         assertEquals(body, quote.getQuote());
     }
 
-    public AnimechanApi buildAnimechanApi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://animechan.vercel.app/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(AnimechanApi.class);
-    }
-
     @Test
     public void getRandomQuotes_isCorrect() {
-        Call<List<Quote>> call = buildAnimechanApi().getRandomQuotes();
+        Call<List<Quote>> call = QuoteFeedActivity.buildAnimechanApi().getRandomQuotes();
 
         call.enqueue(new Callback<List<Quote>>() {
             @Override
@@ -74,7 +67,7 @@ public class QuoteTest {
     public void getQuoteByAnime_isCorrect(){
         String animeToCheck = "Shingeki no Kyojin";
 
-        Call<List<Quote>> call = buildAnimechanApi().getQuotesByAnime(animeToCheck);
+        Call<List<Quote>> call = QuoteFeedActivity.buildAnimechanApi().getQuotesByAnime(animeToCheck);
 
         call.enqueue(new Callback<List<Quote>>() {
             @Override
@@ -109,7 +102,7 @@ public class QuoteTest {
     public void getQuoteByCharacter_isCorrect(){
         String characterToCheck = "Lelouch Lamperouge";
 
-        Call<List<Quote>> call = buildAnimechanApi().getQuotesByAnime(characterToCheck);
+        Call<List<Quote>> call = QuoteFeedActivity.buildAnimechanApi().getQuotesByAnime(characterToCheck);
 
         call.enqueue(new Callback<List<Quote>>() {
             @Override
@@ -134,6 +127,35 @@ public class QuoteTest {
 
             @Override
             public void onFailure(Call<List<Quote>> call, Throwable t) {
+                Log.e("getQuoteByCharacterTest", t.getMessage());
+                fail(t.getMessage());
+            }
+        });
+    }
+
+    @Test
+    public void getAvailableAnime_isCorrect(){
+        Call<List<String>> call = QuoteFeedActivity.buildAnimechanApi().getAvailableAnime();
+
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if(!response.isSuccessful()) {
+                    Log.e("getAvailableAnimeTest", "Code: " + response.code());
+                    fail(response.message());
+                    return;
+                }
+
+                List<String> animeTitles = response.body();
+
+                for (String anime : animeTitles) {
+                    assertTrue(anime instanceof String);
+                }
+                assertTrue(animeTitles.size() > 0);
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
                 Log.e("getQuoteByCharacterTest", t.getMessage());
                 fail(t.getMessage());
             }

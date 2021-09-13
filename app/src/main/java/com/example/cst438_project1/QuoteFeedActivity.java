@@ -45,7 +45,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         Intent intent = new Intent();
 
         if (choice.equals("byAnime")) {
-            intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
+//            intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
         } else {
 //            intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
         }
@@ -53,7 +53,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private AnimechanApi buildAnimechanApi() {
+    public static AnimechanApi buildAnimechanApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://animechan.vercel.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
