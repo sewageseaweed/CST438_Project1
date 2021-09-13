@@ -25,7 +25,7 @@
             style="@style/Widget.AppCompat.Spinner.DropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/quoteFeedByAnime_textView_title"/>
+            android:layout_below="@+id/quoteFeedByAnime_textView_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/quoteFeedByAnime_recyclerView"
