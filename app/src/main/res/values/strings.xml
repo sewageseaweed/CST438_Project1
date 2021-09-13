@@ -12,5 +12,5 @@
     <string name="quoteFeed_button_byCharacter">Character</string>
 
     <string name="quoteFeedByAnime_textView_title">Quotes by Anime</string>
-    <string name="quoteFeedByAnime_button_10random">10 Random</string>
+    <string name="quoteFeedByAnime_button_10random">10 Rand</string>
 </resources>

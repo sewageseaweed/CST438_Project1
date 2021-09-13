@@ -21,5 +21,5 @@ public interface AnimechanApi {
 
     /** returns all available anime titles from API */
     @GET("available/anime")
-    Call<List<Quote>> getAvailableAnime();
+    Call<List<String>> getAvailableAnime();
 }

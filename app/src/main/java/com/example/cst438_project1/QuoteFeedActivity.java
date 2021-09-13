@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -33,6 +35,15 @@ public class QuoteFeedActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
         getRandomQuotes(adapter);
+
+        final Button btnSearchByAnime = findViewById(R.id.quoteFeed_button_searchByAnime);
+
+        btnSearchByAnime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity("byAnime");
+            }
+        });
     }
 
     public static Intent getIntent(Context context) {
@@ -53,7 +64,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private AnimechanApi buildAnimechanApi() {
+    public static AnimechanApi buildAnimechanApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://animechan.vercel.app/api/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -83,4 +94,6 @@ public class QuoteFeedActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

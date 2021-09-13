@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/quoteFeed_searchByBar">
+        android:layout_above="@id/quoteFeedByAnime_searchByBar">
 
         <TextView
             android:id="@+id/quoteFeedByAnime_textView_title"
@@ -20,16 +20,23 @@
             android:textAlignment="center"
             android:padding="8dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/quoteFeed_recyclerView"
+        <Spinner
+            android:id="@+id/quoteFeedByAnime_spinner"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/quoteFeedByAnime_textView_title"
-            android:layout_above="@id/quoteFeed_searchByBar"
+            android:layout_below="@+id/quoteFeedByAnime_textView_title"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/quoteFeedByAnime_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/quoteFeedByAnime_spinner"
+            android:layout_above="@id/quoteFeedByAnime_searchByBar"
             tools:listitem="@layout/item" />
 
         <LinearLayout
-            android:id="@+id/quoteFeed_searchByBar"
+            android:id="@+id/quoteFeedByAnime_searchByBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -45,14 +52,14 @@
                 android:layout_marginRight="8dp" />
 
             <Button
-                android:id="@+id/quoteFeed_button_searchByAnime"
+                android:id="@+id/quoteFeedByAnime_button_10random"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeedByAnime_button_10random"
                 android:layout_marginRight="8dp" />
 
             <Button
-                android:id="@+id/quoteFeed_button_searchByCharacter"
+                android:id="@+id/quoteFeedByAnime_button_searchByCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeed_button_byCharacter" />
