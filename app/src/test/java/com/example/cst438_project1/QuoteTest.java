@@ -1,22 +1,13 @@
 package com.example.cst438_project1;
 
-import static com.example.cst438_project1.QuoteFeedActivity.buildAnimechanApi;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 import android.util.Log;
-
 import java.util.List;
-
+import org.junit.Test;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuoteTest {
     @Test
@@ -46,12 +37,13 @@ public class QuoteTest {
                 }
 
                 List<Quote> quotes = response.body();
+
+                assertTrue(quotes.size() > 0);
                 for (Quote quote : quotes) {
                     assertNotNull(quote.getAnime());
                     assertNotNull(quote.getCharacter());
                     assertNotNull(quote.getQuote());
                 }
-
                 assertEquals(10, quotes.size());
             }
 
@@ -79,6 +71,7 @@ public class QuoteTest {
                 }
 
                 List<Quote> quotes = response.body();
+                assertTrue(quotes.size() > 0);
                 for (Quote quote : quotes) {
 //                    String content = "";
 //                    content += "Anime Title: " + quotes.get(i).getAnime() + "\n";
@@ -114,6 +107,7 @@ public class QuoteTest {
                 }
 
                 List<Quote> quotes = response.body();
+                assertTrue(quotes.size() > 0);
                 for (Quote quote : quotes) {
 //                    String content = "";
 //                    content += "Anime Title: " + quotes.get(i).getAnime() + "\n";
@@ -148,9 +142,6 @@ public class QuoteTest {
 
                 List<String> animeTitles = response.body();
 
-                for (String anime : animeTitles) {
-                    assertTrue(anime instanceof String);
-                }
                 assertTrue(animeTitles.size() > 0);
             }
 
