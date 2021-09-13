@@ -41,6 +41,18 @@ public class QuoteFeedActivity extends AppCompatActivity {
         return intent;
     }
 
+    public void nextActivity(String choice) {
+        Intent intent = new Intent();
+
+        if (choice.equals("byAnime")) {
+            intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
+        } else {
+//            intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
+        }
+
+        startActivity(intent);
+    }
+
     private AnimechanApi buildAnimechanApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://animechan.vercel.app/api/")
