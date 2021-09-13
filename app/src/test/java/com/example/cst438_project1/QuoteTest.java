@@ -1,20 +1,13 @@
 package com.example.cst438_project1;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 import android.util.Log;
-
 import java.util.List;
-
+import org.junit.Test;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuoteTest {
     @Test
@@ -30,18 +23,9 @@ public class QuoteTest {
         assertEquals(body, quote.getQuote());
     }
 
-    public AnimechanApi buildAnimechanApi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://animechan.vercel.app/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(AnimechanApi.class);
-    }
-
     @Test
     public void getRandomQuotes_isCorrect() {
-        Call<List<Quote>> call = buildAnimechanApi().getRandomQuotes();
+        Call<List<Quote>> call = QuoteFeedActivity.buildAnimechanApi().getRandomQuotes();
 
         call.enqueue(new Callback<List<Quote>>() {
             @Override
@@ -53,12 +37,13 @@ public class QuoteTest {
                 }
 
                 List<Quote> quotes = response.body();
+
+                assertTrue(quotes.size() > 0);
                 for (Quote quote : quotes) {
                     assertNotNull(quote.getAnime());
                     assertNotNull(quote.getCharacter());
                     assertNotNull(quote.getQuote());
                 }
-
                 assertEquals(10, quotes.size());
             }
 
@@ -74,7 +59,7 @@ public class QuoteTest {
     public void getQuoteByAnime_isCorrect(){
         String animeToCheck = "Shingeki no Kyojin";
 
-        Call<List<Quote>> call = buildAnimechanApi().getQuotesByAnime(animeToCheck);
+        Call<List<Quote>> call = QuoteFeedActivity.buildAnimechanApi().getQuotesByAnime(animeToCheck);
 
         call.enqueue(new Callback<List<Quote>>() {
             @Override
@@ -86,6 +71,7 @@ public class QuoteTest {
                 }
 
                 List<Quote> quotes = response.body();
+                assertTrue(quotes.size() > 0);
                 for (Quote quote : quotes) {
 //                    String content = "";
 //                    content += "Anime Title: " + quotes.get(i).getAnime() + "\n";
@@ -109,7 +95,7 @@ public class QuoteTest {
     public void getQuoteByCharacter_isCorrect(){
         String characterToCheck = "Lelouch Lamperouge";
 
-        Call<List<Quote>> call = buildAnimechanApi().getQuotesByAnime(characterToCheck);
+        Call<List<Quote>> call = QuoteFeedActivity.buildAnimechanApi().getQuotesByAnime(characterToCheck);
 
         call.enqueue(new Callback<List<Quote>>() {
             @Override
@@ -121,6 +107,7 @@ public class QuoteTest {
                 }
 
                 List<Quote> quotes = response.body();
+                assertTrue(quotes.size() > 0);
                 for (Quote quote : quotes) {
 //                    String content = "";
 //                    content += "Anime Title: " + quotes.get(i).getAnime() + "\n";
@@ -134,6 +121,32 @@ public class QuoteTest {
 
             @Override
             public void onFailure(Call<List<Quote>> call, Throwable t) {
+                Log.e("getQuoteByCharacterTest", t.getMessage());
+                fail(t.getMessage());
+            }
+        });
+    }
+
+    @Test
+    public void getAvailableAnime_isCorrect(){
+        Call<List<String>> call = QuoteFeedActivity.buildAnimechanApi().getAvailableAnime();
+
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if(!response.isSuccessful()) {
+                    Log.e("getAvailableAnimeTest", "Code: " + response.code());
+                    fail(response.message());
+                    return;
+                }
+
+                List<String> animeTitles = response.body();
+
+                assertTrue(animeTitles.size() > 0);
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
                 Log.e("getQuoteByCharacterTest", t.getMessage());
                 fail(t.getMessage());
             }

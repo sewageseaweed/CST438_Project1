@@ -40,26 +40,26 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity {
         return intent;
     }
 
-    private List<String> getAnimeTitles() {
-        Call<List<String>> call = QuoteFeedActivity.buildAnimechanApi().getAvailableAnime();
-        List<String> animeTitles;
-
-        call.enqueue(new Callback<List<String>>() {
-            @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                if(!response.isSuccessful()) {
-                    Log.e(ACTIVITY_LABEL, "onResponse: getAnimeTitles: Code: " + response.code());
-                    return;
-                }
-
-                 animeTitles = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
-                Log.e(ACTIVITY_LABEL, "onFailure: getAnimeTitles: Code: " + t.getMessage());
-            }
-        });
-        return animeTitles;
-    }
+//    private List<String> getAnimeTitles() {
+//        Call<List<String>> call = QuoteFeedActivity.buildAnimechanApi().getAvailableAnime();
+//        List<String> animeTitles;
+//
+//        call.enqueue(new Callback<List<String>>() {
+//            @Override
+//            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+//                if(!response.isSuccessful()) {
+//                    Log.e(ACTIVITY_LABEL, "onResponse: getAnimeTitles: Code: " + response.code());
+//                    return;
+//                }
+//
+//                 animeTitles = response.body();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<String>> call, Throwable t) {
+//                Log.e(ACTIVITY_LABEL, "onFailure: getAnimeTitles: Code: " + t.getMessage());
+//            }
+//        });
+//        return animeTitles;
+//    }
 }
