@@ -34,9 +34,10 @@
         <item name="Shingeki no Kyojin">Shingeki no Kyojin</item>
         <item name="Sword Art Online">Sword Art Online</item>
         <item name="Trigun">Trigun</item>
-        <item name ="xxxHOLiC">xxxHOLiC</item>
+        <item name="xxxHOLiC">xxxHOLiC</item>
     </string-array>
 
+    <string name="quoteFeedByCharacter_textView_title">Quotes by Character</string>
     <string-array name="characters">
         <item name="Naruto">Naruto</item>
         <item name="Lelouch Lamperouge">Lelouch Lamperouge</item>

@@ -28,20 +28,25 @@ public class QuoteFeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quote_feed);
 
         RecyclerView recyclerView = findViewById(R.id.quoteFeed_recyclerView);
-
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
-
         final QuoteAdapter adapter = new QuoteAdapter();
-
         recyclerView.setAdapter(adapter);
         getRandomQuotes(adapter);
 
         final Button btnSearchByAnime = findViewById(R.id.quoteFeed_button_searchByAnime);
+        final Button btnSearchByCharacter = findViewById(R.id.quoteFeed_button_searchByCharacter);
 
         btnSearchByAnime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nextActivity("byAnime");
+            }
+        });
+
+        btnSearchByCharacter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity("byCharacter");
             }
         });
     }
@@ -57,8 +62,8 @@ public class QuoteFeedActivity extends AppCompatActivity {
 
         if (choice.equals("byAnime")) {
             intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
-        } else {
-//            intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
+        } else if (choice.equals("byCharacter")) {
+            intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
         }
 
         startActivity(intent);
