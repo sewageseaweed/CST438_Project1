@@ -1,5 +1,7 @@
 package com.example.cst438_project1;
 
+import static com.example.cst438_project1.QuoteFeedActivity.buildAnimechanApi;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,13 +23,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QuoteFeedByAnimeActivity extends AppCompatActivity {
+public class QuoteFeedByAnimeActivity extends AppCompatActivity{
     public static final String ACTIVITY_LABEL = "QUOTE_FEED_BY_ANIME_ACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quote_feed_by_anime);
+
+        RecyclerView recyclerView = findViewById(R.id.quoteFeedByAnime_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager((this)));
+        final QuoteAdapter quoteAdapter = new QuoteAdapter();
+        recyclerView.setAdapter(quoteAdapter);
 
         // set anime titles into spinner
         Spinner animeSpinner = findViewById(R.id.quoteFeedByAnime_spinner);
@@ -36,15 +43,18 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity {
         animeSpinner.setAdapter(animeAdapter);
 
         // set up onSelect for spinner to call getQuotesByAnime(selection)
+        animeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedAnime = animeSpinner.getSelectedItem().toString();
+                getQuotesByAnime(quoteAdapter, selectedAnime);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-        RecyclerView recyclerView = findViewById(R.id.quoteFeedByAnime_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager((this)));
-        final QuoteAdapter quoteAdapter = new QuoteAdapter();
-        recyclerView.setAdapter(quoteAdapter);
-
-
-
+            }
+        });
 
         final Button btn10rand = findViewById(R.id.quoteFeedByAnime_button_10random);
 
@@ -72,5 +82,27 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity {
         }
 
         startActivity(intent);
+    }
+
+    private void getQuotesByAnime(QuoteAdapter adapter, String anime) {
+        Call<List<Quote>> call = QuoteFeedActivity.buildAnimechanApi().getQuotesByAnime(anime);
+
+        call.enqueue(new Callback<List<Quote>>() {
+            @Override
+            public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
+                if (!response.isSuccessful()) {
+                    Log.e(ACTIVITY_LABEL, "onResponse: getQuotesByAnime: Code: " + response.code());
+                    return;
+                }
+
+                List<Quote> quotes = response.body();
+                adapter.setQuotes(quotes);
+            }
+
+            @Override
+            public void onFailure(Call<List<Quote>> call, Throwable t) {
+                Log.e(ACTIVITY_LABEL, "onFailure: getQuotesByAnime: Code: " + t.getMessage());
+            }
+        });
     }
 }
