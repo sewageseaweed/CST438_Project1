@@ -29,38 +29,22 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quote_feed_by_anime);
 
+        // set anime titles into spinner
         Spinner animeSpinner = findViewById(R.id.quoteFeedByAnime_spinner);
-        ArrayAdapter<String> animeAdapter;
-        Call<List<String>> call = QuoteFeedActivity.buildAnimechanApi().getAvailableAnime();
-        List<String> animeTitles;
+        ArrayAdapter<CharSequence> animeAdapter = ArrayAdapter.createFromResource(this, R.array.anime, android.R.layout.simple_spinner_item);
+        animeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        animeSpinner.setAdapter(animeAdapter);
 
-        call.enqueue(new Callback<List<String>>() {
-            @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                if(!response.isSuccessful()) {
-                    Log.e(ACTIVITY_LABEL, "onResponse: getAnimeTitles: Code: " + response.code());
-                    return;
-                }
-                animeTitles= response.body();
-                animeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, animeTitles);
-                animeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                animeSpinner.setAdapter(animeAdapter);
+        // set up onSelect for spinner to call getQuotesByAnime(selection)
 
-            }
-
-            @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
-                Log.e(ACTIVITY_LABEL, "onFailure: getAnimeTitles: Code: " + t.getMessage());
-            }
-        });
 
         RecyclerView recyclerView = findViewById(R.id.quoteFeedByAnime_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
-        final QuoteAdapter adapter = new QuoteAdapter();
-        recyclerView.setAdapter(adapter);
+        final QuoteAdapter quoteAdapter = new QuoteAdapter();
+        recyclerView.setAdapter(quoteAdapter);
 
-        // set anime titles into spinner
-        // set up onSelect for spinner to call getQuotesByAnime(selection)
+
+
 
         final Button btn10rand = findViewById(R.id.quoteFeedByAnime_button_10random);
 

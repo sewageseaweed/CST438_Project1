@@ -14,43 +14,41 @@
     <string name="quoteFeedByAnime_textView_title">Quotes by Anime</string>
     <string name="quoteFeedByAnime_button_10random">10 Rand</string>
     <string-array name="anime">
-        <item>Accel World</item>
-        <item>Ao no Exorcist</item>
-        <item>Assassination Classroom</item>
-        <item>Bleach</item>
-        <item>Boku no Hero Academia</item>
-        <item>Bungou Stray Dogs</item>
-        <item>Cardcaptor Sakura</item>
-        <item>Claymore</item>
-        <item>Fairy Tail</item>
-        <item>Fate/stay night</item>
-        <item>Fruits Basket</item>
-        <item>Ghost in the Shell</item>
-        <item>Gurren Lagann</item>
-        <item>Hellsing</item>
-        <item>Howl's Moving Castle</item>
-        <item>JoJo's Bizarre Adventure</item>
-        <item>Kingdom Hearts</item>
-        <item>No Game No Life</item>
-        <item>One Piece</item>
-        <item>Shingeki no Kyojin</item>
-        <item>Sword Art Online</item>
-        <item>Trigun</item>
-        <item>xxxHOLiC</item>
+        <item name="Accel World">Accel World</item>
+        <item name="Ao no Exorcist">Ao no Exorcist</item>
+        <item name="Assassination Classroom">Assassination Classroom</item>
+        <item name="Bleach">Bleach</item>
+        <item name="Boku no Hero Academia">Boku no Hero Academia</item>
+        <item name="Bungou Stray Dogs">Bungou Stray Dogs</item>
+        <item name="Cardcaptor Sakura">Cardcaptor Sakura</item>
+        <item name="Claymore">Claymore</item>
+        <item name="Fairy Tail">Fairy Tail</item>
+        <item name="Fate/stay night">Fate/stay night</item>
+        <item name="Fruits Basket">Fruits Basket</item>
+        <item name="Ghost in the Shell">Ghost in the Shell</item>
+        <item name="Gurren Lagann">Gurren Lagann</item>
+        <item name="Hellsing">Hellsing</item>
+        <item name="Kingdom Hearts">Kingdom Hearts</item>
+        <item name="No Game No Life">No Game No Life</item>
+        <item name="One Piece">One Piece</item>
+        <item name="Shingeki no Kyojin">Shingeki no Kyojin</item>
+        <item name="Sword Art Online">Sword Art Online</item>
+        <item name="Trigun">Trigun</item>
+        <item name ="xxxHOLiC">xxxHOLiC</item>
     </string-array>
 
     <string-array name="characters">
-        <item>Naruto</item>
-        <item>Lelouch Lamperouge</item>
-        <item>Korosensei</item>
-        <item>Sora</item>
-        <item>Monkey D. Luffy</item>
-        <item>Kaneki Ken</item>
-        <item>Shiroe</item>
-        <item>Edward Elric</item>
-        <item>Aladdin</item>
-        <item>Tifa Lockhart</item>
-        <item>Ciel Phantomhive</item>
-        <item>Kurama</item>
+        <item name="Naruto">Naruto</item>
+        <item name="Lelouch Lamperouge">Lelouch Lamperouge</item>
+        <item name="Korosensei">Korosensei</item>
+        <item name="Sora">Sora</item>
+        <item name="Monkey D. Luffy">Monkey D. Luffy</item>
+        <item name="Kaneki Ken">Kaneki Ken</item>
+        <item name="Shiroe">Shiroe</item>
+        <item name="Edward Elric">Edward Elric</item>
+        <item name="Aladdin">Aladdin</item>
+        <item name="Tifa Lockhart">Tifa Lockhart</item>
+        <item name="Ciel Phantomhive">Ciel Phantomhive</item>
+        <item name="Kurama">Kurama</item>
     </string-array>
 </resources>
