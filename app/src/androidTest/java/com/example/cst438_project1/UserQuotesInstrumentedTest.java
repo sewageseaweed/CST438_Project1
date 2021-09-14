@@ -25,7 +25,6 @@ import com.example.cst438_project1.database.UserQuotesEntity;
 public class UserQuotesInstrumentedTest {
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     AppDatabase appDB = AppDatabase.getDbInstance(appContext);
-    @Before
     public void useAppContext() {
         // Context of the app under test.
         UserQuotesEntity quote = new UserQuotesEntity(1,"One Piece", "Luffy D. Monkey", "I will be the king of pirates");
@@ -34,6 +33,7 @@ public class UserQuotesInstrumentedTest {
 
     @Test
     public void checkDBSize(){
+        useAppContext();
         assertEquals(1, appDB.userquotes().getAllFavorites().size());
     }
 
