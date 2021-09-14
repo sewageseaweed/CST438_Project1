@@ -3,7 +3,6 @@ package com.example.cst438_project1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,7 +36,7 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
         characterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         characterSpinner.setAdapter(characterAdapter);
 
-        // set up onSelect for spinner to call getQuotesByAnime(selection)
+        // on spinner selection, update recycler with relevant quotes
         characterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -54,8 +51,6 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
         });
 
         final Button btn10rand = findViewById(R.id.quoteFeedByCharacter_button_10random);
-        final Button btnByAnime= findViewById(R.id.quoteFeedByCharacter_button_searchByAnime);
-
         btn10rand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +58,7 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
             }
         });
 
+        final Button btnByAnime= findViewById(R.id.quoteFeedByCharacter_button_searchByAnime);
         btnByAnime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +85,8 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void getQuotesByCharacter(QuoteAdapter adapter, String character) {
+    /** update the quotes in the recycler view based on character name given to API call */
+    private void getQuotesByCharacter(QuoteAdapter quoteAdapter, String character) {
         Call<List<Quote>> call = QuoteFeedActivity.buildAnimechanApi().getQuotesByCharacter(character);
 
         call.enqueue(new Callback<List<Quote>>() {
@@ -101,7 +98,7 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
                 }
 
                 List<Quote> quotes = response.body();
-                adapter.setQuotes(quotes);
+                quoteAdapter.setQuotes(quotes);
             }
 
             @Override

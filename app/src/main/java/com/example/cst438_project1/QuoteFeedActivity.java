@@ -3,16 +3,13 @@ package com.example.cst438_project1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,6 +66,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /** return a retrofit base for Call items for animechan API */
     public static AnimechanApi buildAnimechanApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://animechan.vercel.app/api/")
@@ -78,7 +76,8 @@ public class QuoteFeedActivity extends AppCompatActivity {
         return retrofit.create(AnimechanApi.class);
     }
 
-    private void getRandomQuotes(QuoteAdapter adapter) {
+    /** update the quotes in the recycler view based on API call */
+    private void getRandomQuotes(QuoteAdapter quoteAdapter) {
         Call<List<Quote>> call = buildAnimechanApi().getRandomQuotes();
 
         call.enqueue(new Callback<List<Quote>>() {
@@ -90,7 +89,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
                 }
 
                 List<Quote> quotes = response.body();
-                adapter.setQuotes(quotes);
+                quoteAdapter.setQuotes(quotes);
             }
 
             @Override
