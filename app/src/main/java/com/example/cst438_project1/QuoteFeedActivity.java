@@ -66,6 +66,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     /** return a retrofit base for Call items for animechan API */
     public static AnimechanApi buildAnimechanApi() {
         Retrofit retrofit = new Retrofit.Builder()
