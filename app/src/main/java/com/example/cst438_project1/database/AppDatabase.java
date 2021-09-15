@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 @Database(entities  = {UserQuotesEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract UserQuotesDAO userquotes();
+    public abstract UserQuotesDAO userQuotes();
 
     private static AppDatabase INSTANCE;
 

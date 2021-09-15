@@ -28,25 +28,25 @@ public class UserQuotesInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         UserQuotesEntity quote = new UserQuotesEntity(1,"One Piece", "Luffy D. Monkey", "I will be the king of pirates");
-        appDB.userquotes().insertFavorite(quote);
+        appDB.userQuotes().insertFavorite(quote);
     }
 
     @Test
     public void checkDBSize(){
         useAppContext();
-        assertEquals(1, appDB.userquotes().getAllFavorites().size());
+        assertEquals(1, appDB.userQuotes().getAllFavorites().size());
     }
 
     @Test
     public void checkInsert(){
         UserQuotesEntity quote = new UserQuotesEntity(2,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!");
-        appDB.userquotes().insertFavorite(quote);
-        assertEquals(2, appDB.userquotes().getAllFavorites().size());
+        appDB.userQuotes().insertFavorite(quote);
+        assertEquals(2, appDB.userQuotes().getAllFavorites().size());
     }
 
     @Test
     public void checkDelete(){
-        appDB.userquotes().delete(new UserQuotesEntity(2,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!"));
-        assertEquals(1, appDB.userquotes().getAllFavorites().size());
+        appDB.userQuotes().delete(new UserQuotesEntity(2,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!"));
+        assertEquals(1, appDB.userQuotes().getAllFavorites().size());
     }
 }

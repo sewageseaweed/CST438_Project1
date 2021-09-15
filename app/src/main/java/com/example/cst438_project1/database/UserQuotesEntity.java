@@ -11,7 +11,11 @@ public class UserQuotesEntity {
 
     @ColumnInfo(name = "userID")
     private int userID;
-
+    /**
+     * Title: Is the title of the anime
+     * charName: Is the character name.
+     * quote: Is the quote.
+     */
     @ColumnInfo(name = "title")
     private String title;
 
