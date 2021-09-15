@@ -1,3 +1,55 @@
 <resources>
     <string name="app_name">CST438_Project1</string>
+
+    <string name="item_textView_titlePlaceHolder">Title of Item</string>
+    <string name="item_textView_authorPlaceHolder">Author of Item</string>
+    <string name="item_textView_quotePlaceHolder">Quote</string>
+    <string name="item_button_text">star</string>
+
+    <string name="quoteFeed_textView_title_10random">10 Random Quotes</string>
+    <string name="quoteFeed_textView_Searchby_prompt">Search by: </string>
+    <string name="quoteFeed_button_byAnime">Anime</string>
+    <string name="quoteFeed_button_byCharacter">Character</string>
+
+    <string name="quoteFeedByAnime_textView_title">Quotes by Anime</string>
+    <string name="quoteFeedByAnime_button_10random">10 Rand</string>
+    <string-array name="anime">
+        <item name="Accel World">Accel World</item>
+        <item name="Ao no Exorcist">Ao no Exorcist</item>
+        <item name="Assassination Classroom">Assassination Classroom</item>
+        <item name="Bleach">Bleach</item>
+        <item name="Boku no Hero Academia">Boku no Hero Academia</item>
+        <item name="Bungou Stray Dogs">Bungou Stray Dogs</item>
+        <item name="Cardcaptor Sakura">Cardcaptor Sakura</item>
+        <item name="Claymore">Claymore</item>
+        <item name="Fairy Tail">Fairy Tail</item>
+        <item name="Fate/stay night">Fate/stay night</item>
+        <item name="Fruits Basket">Fruits Basket</item>
+        <item name="Ghost in the Shell">Ghost in the Shell</item>
+        <item name="Gurren Lagann">Gurren Lagann</item>
+        <item name="Hellsing">Hellsing</item>
+        <item name="Kingdom Hearts">Kingdom Hearts</item>
+        <item name="No Game No Life">No Game No Life</item>
+        <item name="One Piece">One Piece</item>
+        <item name="Shingeki no Kyojin">Shingeki no Kyojin</item>
+        <item name="Sword Art Online">Sword Art Online</item>
+        <item name="Trigun">Trigun</item>
+        <item name="xxxHOLiC">xxxHOLiC</item>
+    </string-array>
+
+    <string name="quoteFeedByCharacter_textView_title">Quotes by Character</string>
+    <string-array name="characters">
+        <item name="Naruto">Naruto</item>
+        <item name="Lelouch Lamperouge">Lelouch Lamperouge</item>
+        <item name="Korosensei">Korosensei</item>
+        <item name="Sora">Sora</item>
+        <item name="Monkey D. Luffy">Monkey D. Luffy</item>
+        <item name="Kaneki Ken">Kaneki Ken</item>
+        <item name="Shiroe">Shiroe</item>
+        <item name="Edward Elric">Edward Elric</item>
+        <item name="Aladdin">Aladdin</item>
+        <item name="Tifa Lockhart">Tifa Lockhart</item>
+        <item name="Ciel Phantomhive">Ciel Phantomhive</item>
+        <item name="Kurama">Kurama</item>
+    </string-array>
 </resources>
