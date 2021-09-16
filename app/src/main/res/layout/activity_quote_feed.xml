@@ -24,8 +24,8 @@
             android:id="@+id/quoteFeed_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/quoteFeed_textView_title"
             android:layout_above="@id/quoteFeed_searchByBar"
+            android:layout_below="@+id/quoteFeed_textView_title"
             tools:listitem="@layout/item" />
 
         <LinearLayout
