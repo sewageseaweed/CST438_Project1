@@ -1,6 +1,8 @@
 package com.example.cst438_project1;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     EditText name;
     EditText email;
     Button register;
+    Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,34 +27,35 @@ public class MainActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         register = findViewById(R.id.register);
+        login = findViewById(R.id.login);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UE uE = new UE();
-                uE.setUsername(username.getText().toString());
-                uE.setPassword(password.getText().toString());
-                uE.setName(name.getText().toString());
-                uE.setEmail(email.getText().toString());
-                if (uE.getUsername().isEmpty()) {
+                UE userEntity = new UE();
+                userEntity.setUsername(username.getText().toString());
+                userEntity.setPassword(password.getText().toString());
+                userEntity.setName(name.getText().toString());
+                userEntity.setEmail(email.getText().toString());
+                if (userEntity.getUsername().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter a username", Toast.LENGTH_SHORT).show();
                 }
-                else if(uE.getPassword().isEmpty()) {
+                else if(userEntity.getPassword().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter a password", Toast.LENGTH_SHORT).show();
                 }
-                else if(uE.getName().isEmpty()) {
+                else if(userEntity.getName().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter a name", Toast.LENGTH_SHORT).show();
                 }
-                else if(uE.getEmail().isEmpty()) {
+                else if(userEntity.getEmail().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter an email", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    UserDatabase uD = UserDatabase.getUserDatabase(getApplicationContext());
-                    UserDAO userDAO = uD.userDAO();
+                    UserDatabase userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
+                    UserDAO userDAO = userDatabase.userDAO();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            userDAO.registerUser(uE);
+                            userDAO.registerUser(userEntity);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -61,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }).start();
                 }
+            }
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Login.class));
             }
         });
     }
