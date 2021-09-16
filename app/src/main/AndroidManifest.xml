@@ -18,9 +18,6 @@
             android:name=".Login"
             android:exported="true" />
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="true"
-            android:label="@string/title_activity_login" />
             android:name=".QuoteFeedByCharacterActivity"
             android:exported="true" />
         <activity
