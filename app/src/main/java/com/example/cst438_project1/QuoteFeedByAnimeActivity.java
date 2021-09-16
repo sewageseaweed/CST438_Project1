@@ -65,6 +65,14 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
                 nextActivity("byCharacter");
             }
         });
+
+        final Button btnSignOut = findViewById(R.id.quoteFeedByAnime_button_btnSignOut);
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity("signOut");
+            }
+        });
     }
 
     public static Intent getIntent(Context context) {
@@ -80,6 +88,8 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
             intent = QuoteFeedActivity.getIntent(getApplicationContext());
         } else if (choice.equals("byCharacter")) {
             intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
+        } else if (choice.equals("signOut")) {
+            intent = MainActivity.getIntent(getApplicationContext());
         }
 
         startActivity(intent);

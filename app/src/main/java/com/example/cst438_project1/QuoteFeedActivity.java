@@ -69,8 +69,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
             intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
         } else if (choice.equals("byCharacter")) {
             intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
-        }
-        else if (choice.equals("signOut")) {
+        } else if (choice.equals("signOut")) {
             intent = MainActivity.getIntent(getApplicationContext());
         }
 
