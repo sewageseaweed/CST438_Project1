@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String ACTIVITY_LABEL = "MAIN_ACTIVITY";
 
     EditText username;
     EditText password;
@@ -20,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
