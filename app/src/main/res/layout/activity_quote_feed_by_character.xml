@@ -15,10 +15,10 @@
             android:id="@+id/quoteFeedByCharacter_textView_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:text="@string/quoteFeedByCharacter_textView_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textAlignment="center"
-            android:padding="8dp" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <Spinner
             android:id="@+id/quoteFeedByCharacter_spinner"

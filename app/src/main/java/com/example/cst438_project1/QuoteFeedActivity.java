@@ -9,6 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.example.cst438_project1.database.AppDatabase;
+import com.example.cst438_project1.database.UserQuotesEntity;
+
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +37,10 @@ public class QuoteFeedActivity extends AppCompatActivity {
 
         final Button btnSearchByAnime = findViewById(R.id.quoteFeed_button_searchByAnime);
         final Button btnSearchByCharacter = findViewById(R.id.quoteFeed_button_searchByCharacter);
+        final Button btnStar = findViewById(R.id.item_button);
+        AppDatabase appDb = AppDatabase.getDbInstance(this);
+
+
 
         btnSearchByAnime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +53,23 @@ public class QuoteFeedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 nextActivity("byCharacter");
+            }
+        });
+
+        btnStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView textView = findViewById(R.id.item_character);
+                String charName = textView.getText().toString();
+
+                textView = findViewById(R.id.item_anime);
+                String anime = textView.getText().toString();
+
+                textView = findViewById(R.id.item_quote);
+                String quote = textView.getText().toString();
+
+                UserQuotesEntity userFavorite = new UserQuotesEntity(1,anime, charName, quote);
+                appDb.userQuotes().insertFavorite(userFavorite);
             }
         });
     }

@@ -22,29 +22,29 @@
             android:id="@+id/item_character"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/item_textView_authorPlaceHolder"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:maxLines="1"
             android:layout_toStartOf="@id/item_button"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/item_textView_authorPlaceHolder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <TextView
             android:id="@+id/item_anime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/item_textView_titlePlaceHolder"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:maxLines="1"
+            android:layout_below="@id/item_character"
             android:layout_toStartOf="@id/item_button"
             android:ellipsize="end"
-            android:layout_below="@id/item_character" />
+            android:maxLines="1"
+            android:text="@string/item_textView_titlePlaceHolder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
             android:id="@+id/item_quote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/item_anime"
             android:text="@string/item_textView_quotePlaceHolder"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:layout_below="@id/item_anime" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
