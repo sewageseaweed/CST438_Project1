@@ -23,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuoteFeedActivity extends AppCompatActivity {
     public static final String ACTIVITY_LABEL = "QUOTE_FEED_ACTIVITY";
+    AppDatabase appDb = AppDatabase.getDbInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,6 @@ public class QuoteFeedActivity extends AppCompatActivity {
         final Button btnSearchByAnime = findViewById(R.id.quoteFeed_button_searchByAnime);
         final Button btnSearchByCharacter = findViewById(R.id.quoteFeed_button_searchByCharacter);
         final Button btnStar = findViewById(R.id.item_button);
-        AppDatabase appDb = AppDatabase.getDbInstance(this);
 
 
 
@@ -56,22 +56,23 @@ public class QuoteFeedActivity extends AppCompatActivity {
             }
         });
 
-        btnStar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView textView = findViewById(R.id.item_character);
-                String charName = textView.getText().toString();
+    }
 
-                textView = findViewById(R.id.item_anime);
-                String anime = textView.getText().toString();
+    public void favoriteQuote(View view){
+        View parent = (View) view.getParent();
 
-                textView = findViewById(R.id.item_quote);
-                String quote = textView.getText().toString();
+        TextView textView = findViewById(R.id.item_character);
+        String charName = textView.getText().toString();
 
-                UserQuotesEntity userFavorite = new UserQuotesEntity(1,anime, charName, quote);
-                appDb.userQuotes().insertFavorite(userFavorite);
-            }
-        });
+        textView = findViewById(R.id.item_anime);
+        String anime = textView.getText().toString();
+
+        textView = findViewById(R.id.item_quote);
+        String quote = textView.getText().toString();
+
+        UserQuotesEntity userFavorite = new UserQuotesEntity(1,anime, charName, quote);
+        appDb.userQuotes().insertFavorite(userFavorite);
+
     }
 
     public static Intent getIntent(Context context) {
