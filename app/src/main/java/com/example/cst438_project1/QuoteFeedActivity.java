@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cst438_project1.database.AppDatabase;
 import com.example.cst438_project1.database.UserQuotesEntity;
@@ -23,10 +24,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class QuoteFeedActivity extends AppCompatActivity {
     public static final String ACTIVITY_LABEL = "QUOTE_FEED_ACTIVITY";
-    AppDatabase appDb = AppDatabase.getDbInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppDatabase appDb = AppDatabase.getDbInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quote_feed);
 
@@ -38,8 +39,6 @@ public class QuoteFeedActivity extends AppCompatActivity {
 
         final Button btnSearchByAnime = findViewById(R.id.quoteFeed_button_searchByAnime);
         final Button btnSearchByCharacter = findViewById(R.id.quoteFeed_button_searchByCharacter);
-        final Button btnStar = findViewById(R.id.item_button);
-
 
 
         btnSearchByAnime.setOnClickListener(new View.OnClickListener() {
@@ -59,19 +58,28 @@ public class QuoteFeedActivity extends AppCompatActivity {
     }
 
     public void favoriteQuote(View view){
+        String TAG = "Favorite Quote";
+        AppDatabase appDb = AppDatabase.getDbInstance(this);
+
         View parent = (View) view.getParent();
 
-        TextView textView = findViewById(R.id.item_character);
+        TextView textView = parent.findViewById(R.id.item_character);
         String charName = textView.getText().toString();
 
-        textView = findViewById(R.id.item_anime);
+        textView = parent.findViewById(R.id.item_anime);
         String anime = textView.getText().toString();
 
-        textView = findViewById(R.id.item_quote);
+        textView = parent.findViewById(R.id.item_quote);
         String quote = textView.getText().toString();
 
         UserQuotesEntity userFavorite = new UserQuotesEntity(1,anime, charName, quote);
         appDb.userQuotes().insertFavorite(userFavorite);
+
+        int length = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(getApplicationContext(), "Quote Favorited!", length);
+        toast.show();
+
+        Log.d(TAG, "favoriteQuote: " + anime);
 
     }
 
