@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
                                 });
                             }
                             else {
-                                startActivity(new Intent(Login.this, Homepage.class));
+                                startActivity(new Intent(Login.this, QuoteFeedActivity.class));
                             }
                         }
                     }).start();

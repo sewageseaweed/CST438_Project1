@@ -2,6 +2,7 @@ package com.example.cst438_project1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -76,5 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Login.class));
             }
         });
+    }
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 }

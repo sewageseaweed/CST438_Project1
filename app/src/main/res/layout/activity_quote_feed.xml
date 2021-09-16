@@ -56,6 +56,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeed_button_byCharacter" />
+
+            <Button
+                android:id="@+id/quoteFeed_button_btnSignOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign out" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
