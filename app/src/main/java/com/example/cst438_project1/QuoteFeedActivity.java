@@ -39,6 +39,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
 
         final Button btnSearchByAnime = findViewById(R.id.quoteFeed_button_searchByAnime);
         final Button btnSearchByCharacter = findViewById(R.id.quoteFeed_button_searchByCharacter);
+        final Button btnSignOut = findViewById(R.id.quoteFeed_button_btnSignOut);
 
 
         btnSearchByAnime.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +56,15 @@ public class QuoteFeedActivity extends AppCompatActivity {
             }
         });
 
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity("signOut");
+            }
+        });
     }
 
-    public void favoriteQuote(View view){
+    public void favoriteQuote(View view) {
         String TAG = "Favorite Quote";
         AppDatabase appDb = AppDatabase.getDbInstance(this);
 
@@ -80,7 +87,6 @@ public class QuoteFeedActivity extends AppCompatActivity {
         toast.show();
 
         Log.d(TAG, "favoriteQuote: " + anime);
-
     }
 
     public static Intent getIntent(Context context) {
@@ -96,6 +102,8 @@ public class QuoteFeedActivity extends AppCompatActivity {
             intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
         } else if (choice.equals("byCharacter")) {
             intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
+        } else if (choice.equals("signOut")) {
+            intent = MainActivity.getIntent(getApplicationContext());
         }
 
         startActivity(intent);

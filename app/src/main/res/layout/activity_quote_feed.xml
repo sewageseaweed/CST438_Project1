@@ -11,6 +11,15 @@
         android:layout_height="match_parent"
         android:layout_above="@id/quoteFeed_searchByBar">
 
+        <Button
+            android:id="@+id/quoteFeed_button_btnSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign out"
+            android:layout_alignParentStart="true"
+            android:padding="8dp"
+            android:layout_marginStart="8dp" />
+
         <TextView
             android:id="@+id/quoteFeed_textView_title"
             android:layout_width="match_parent"
@@ -18,44 +27,48 @@
             android:text="@string/quoteFeed_textView_title_10random"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textAlignment="center"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:layout_toEndOf="@id/quoteFeed_button_btnSignOut"
+            android:layout_marginEnd="8dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/quoteFeed_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/quoteFeed_searchByBar"
             android:layout_below="@+id/quoteFeed_textView_title"
-            tools:listitem="@layout/item" />
+            android:layout_above="@id/quoteFeed_searchByBar"
+            android:layout_marginTop="8dp"
+            tools:listitem="@layout/item"/>
 
         <LinearLayout
             android:id="@+id/quoteFeed_searchByBar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeed_textView_Searchby_prompt"
-                android:textSize="30sp"
-                android:layout_marginEnd="10dp" />
+                android:textSize="20sp"
+                android:layout_marginEnd="10dp"/>
 
             <Button
                 android:id="@+id/quoteFeed_button_searchByAnime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeed_button_byAnime"
-                android:layout_marginEnd="10dp" />
+                android:layout_marginEnd="10dp"/>
 
             <Button
                 android:id="@+id/quoteFeed_button_searchByCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quoteFeed_button_byCharacter" />
+                android:text="@string/quoteFeed_button_byCharacter"/>
         </LinearLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
