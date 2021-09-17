@@ -12,6 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.cst438_project1.database.AppDatabase;
+import com.example.cst438_project1.database.UserQuotesEntity;
+
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,6 +79,32 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
                 nextActivity("signOut");
             }
         });
+    }
+
+    public void favoriteQuote(View view){
+        String TAG = "Favorite Quote";
+        AppDatabase appDb = AppDatabase.getDbInstance(this);
+
+        View parent = (View) view.getParent();
+
+        TextView textView = parent.findViewById(R.id.item_character);
+        String charName = textView.getText().toString();
+
+        textView = parent.findViewById(R.id.item_anime);
+        String anime = textView.getText().toString();
+
+        textView = parent.findViewById(R.id.item_quote);
+        String quote = textView.getText().toString();
+
+        UserQuotesEntity userFavorite = new UserQuotesEntity(1,anime, charName, quote);
+        appDb.userQuotes().insertFavorite(userFavorite);
+
+        int length = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(getApplicationContext(), "Quote Favorited!", length);
+        toast.show();
+
+        Log.d(TAG, "favoriteQuote: " + anime);
+
     }
 
     public static Intent getIntent(Context context) {
