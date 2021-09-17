@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cst438_project1.database.AppDatabase;
@@ -28,6 +29,8 @@ public class UserFavoriteQuoteActivity extends AppCompatActivity {
 
         int userId = getIntent().getIntExtra("userId", -1);
         Log.d(ACTIVITY_LABEL, "onCreate: userId: " + userId);
+
+        setActivityTitle(userId);
 
         RecyclerView recyclerView = findViewById(R.id.userQuoteFavorite_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
@@ -86,6 +89,16 @@ public class UserFavoriteQuoteActivity extends AppCompatActivity {
         }
 
         startActivity(intent);
+    }
+
+    private void setActivityTitle(int userId) {
+        Log.d(ACTIVITY_LABEL, "setActivityTitle: begin: userid: " + userId);
+        UserDatabase userDb = UserDatabase.getUserDatabase(this);
+        String username = userDb.userDAO().getUsername(userId);
+        Log.d(ACTIVITY_LABEL, "setActivityTitle: username: " + username);
+
+        TextView activityTitle = findViewById(R.id.userQuoteFavorite_textView_title);
+        activityTitle.setText(String.format("%s's Favorites", username));
     }
 
     private void getUserFavorites(UserQuotesEntityAdapter entityAdapter, int userId) {
