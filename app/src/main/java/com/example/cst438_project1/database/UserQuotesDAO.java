@@ -9,12 +9,14 @@ import java.util.List;
 
 @Dao
 public interface UserQuotesDAO {
-    @Query("SELECT * FROM tblUserQuotes")
-    List<UserQuotesEntity> getAllFavorites();
+    @Query("SELECT * FROM tblUserQuotes WHERE userID = :userId")
+    List<UserQuotesEntity> getAllFavorites(int userId);
 
     @Insert
     void insertFavorite(UserQuotesEntity... userQuote);
 
     @Delete
     void delete(UserQuotesEntity quote);
+
+
 }

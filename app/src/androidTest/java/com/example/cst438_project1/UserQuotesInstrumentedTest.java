@@ -25,6 +25,7 @@ import com.example.cst438_project1.database.UserQuotesEntity;
 public class UserQuotesInstrumentedTest {
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     AppDatabase appDB = AppDatabase.getDbInstance(appContext);
+
     public void useAppContext() {
         // Context of the app under test.
         UserQuotesEntity quote = new UserQuotesEntity(1,"One Piece", "Luffy D. Monkey", "I will be the king of pirates");
@@ -34,19 +35,25 @@ public class UserQuotesInstrumentedTest {
     @Test
     public void checkDBSize(){
         useAppContext();
-        assertEquals(1, appDB.userQuotes().getAllFavorites().size());
+        int userId = 1;
+        Log.d("UserQuotesInstrumentedTest", "checkDBSize: " + appDB.userQuotes().getAllFavorites(userId).size());
+        Log.d("UserQuotesInstrumentedTest", "checkDBSize: " + appDB.userQuotes().getAllFavorites(userId).toString());
+        assertEquals(1, appDB.userQuotes().getAllFavorites(userId).size());
+        /** currently fails as the DB does not start from scratch on app startup */
     }
 
     @Test
     public void checkInsert(){
-        UserQuotesEntity quote = new UserQuotesEntity(2,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!");
+        int userId = 2;
+        UserQuotesEntity quote = new UserQuotesEntity(userId,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!");
         appDB.userQuotes().insertFavorite(quote);
-        assertEquals(2, appDB.userQuotes().getAllFavorites().size());
+        assertEquals(2, appDB.userQuotes().getAllFavorites(userId).size());
     }
 
     @Test
     public void checkDelete(){
-        appDB.userQuotes().delete(new UserQuotesEntity(2,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!"));
-        assertEquals(1, appDB.userQuotes().getAllFavorites().size());
+        int userId = 2;
+        appDB.userQuotes().delete(new UserQuotesEntity(userId,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!"));
+        assertEquals(1, appDB.userQuotes().getAllFavorites(userId).size());
     }
 }
