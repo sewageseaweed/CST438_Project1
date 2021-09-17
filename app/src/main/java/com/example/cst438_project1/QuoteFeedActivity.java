@@ -31,6 +31,8 @@ public class QuoteFeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quote_feed);
 
+        int userId = getIntent().getIntExtra("userId", -1);
+
         RecyclerView recyclerView = findViewById(R.id.quoteFeed_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         final QuoteAdapter adapter = new QuoteAdapter();
@@ -45,26 +47,27 @@ public class QuoteFeedActivity extends AppCompatActivity {
         btnSearchByAnime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextActivity("byAnime");
+                nextActivity("byAnime", userId);
             }
         });
 
         btnSearchByCharacter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextActivity("byCharacter");
+                nextActivity("byCharacter", userId);
             }
         });
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextActivity("signOut");
+                nextActivity("signOut", userId);
             }
         });
     }
 
     public void favoriteQuote(View view) {
+        int userId = getIntent().getIntExtra("userId", -1);
         String TAG = "Favorite Quote";
         AppDatabase appDb = AppDatabase.getDbInstance(this);
 
@@ -79,7 +82,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         textView = parent.findViewById(R.id.item_quote);
         String quote = textView.getText().toString();
 
-        UserQuotesEntity userFavorite = new UserQuotesEntity(1,anime, charName, quote);
+        UserQuotesEntity userFavorite = new UserQuotesEntity(userId,anime, charName, quote);
         appDb.userQuotes().insertFavorite(userFavorite);
 
         int length = Toast.LENGTH_LONG;
@@ -87,6 +90,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         toast.show();
 
         Log.d(TAG, "favoriteQuote: " + anime);
+        Log.d(TAG, "UserID: " + userId);
     }
 
     public static Intent getIntent(Context context) {
@@ -95,7 +99,7 @@ public class QuoteFeedActivity extends AppCompatActivity {
         return intent;
     }
 
-    public void nextActivity(String choice) {
+    public void nextActivity(String choice, int userId) {
         Intent intent = new Intent();
 
         if (choice.equals("byAnime")) {
@@ -105,6 +109,8 @@ public class QuoteFeedActivity extends AppCompatActivity {
         } else if (choice.equals("signOut")) {
             intent = MainActivity.getIntent(getApplicationContext());
         }
+
+        intent.putExtra("userId", userId);
 
         startActivity(intent);
     }

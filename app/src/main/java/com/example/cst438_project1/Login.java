@@ -56,7 +56,10 @@ public class Login extends AppCompatActivity {
                                 });
                             }
                             else {
-                                startActivity(new Intent(Login.this, QuoteFeedActivity.class));
+                                Intent intent = new Intent(Login.this, QuoteFeedActivity.class);
+                                intent.putExtra("userId",userEntity.getId());
+
+                                startActivity(intent);
                             }
                         }
                     }).start();
