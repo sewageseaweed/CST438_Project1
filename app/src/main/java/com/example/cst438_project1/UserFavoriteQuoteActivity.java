@@ -56,6 +56,14 @@ public class UserFavoriteQuoteActivity extends AppCompatActivity {
             }
         });
 
+        final Button btn10Rand = findViewById(R.id.userQuoteFavorite_button_10rand);
+        btn10Rand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity("10rand", userId);
+            }
+        });
+
         final Button btnSignOut = findViewById(R.id.userQuoteFavorite_button_btnSignOut);
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +112,7 @@ public class UserFavoriteQuoteActivity extends AppCompatActivity {
     private void getUserFavorites(UserQuotesEntityAdapter entityAdapter, int userId) {
         Log.d(ACTIVITY_LABEL, "getUserFavorites: begin");
         AppDatabase userFavoritesDb = AppDatabase.getDbInstance(this);
-        List<UserQuotesEntity> userFavorites = userFavoritesDb.userQuotes().getAllFavorites(userId);
+        List<UserQuotesEntity> userFavorites = userFavoritesDb.userQuotes().getUserFavorites(userId);
         Log.d(ACTIVITY_LABEL, "getUserFavorites: userFavorites.size(): " + userFavorites.size());
         Log.d(ACTIVITY_LABEL, "getUserFavorites: userFavorites: " + userFavorites.toString());
 

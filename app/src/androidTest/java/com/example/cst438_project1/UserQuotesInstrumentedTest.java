@@ -25,35 +25,53 @@ import com.example.cst438_project1.database.UserQuotesEntity;
 public class UserQuotesInstrumentedTest {
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     AppDatabase appDB = AppDatabase.getDbInstance(appContext);
+    int id1 = 998;
+    int id2 = 999;
 
     public void useAppContext() {
         // Context of the app under test.
-        UserQuotesEntity quote = new UserQuotesEntity(1,"One Piece", "Luffy D. Monkey", "I will be the king of pirates");
+        appDB.userQuotes().deleteAllFavorites();
+
+        int userId = id1;
+        UserQuotesEntity quote = new UserQuotesEntity(userId,"One Piece", "Luffy D. Monkey", "I will be the king of pirates");
         appDB.userQuotes().insertFavorite(quote);
     }
 
     @Test
     public void checkDBSize(){
         useAppContext();
-        int userId = 1;
-        Log.d("UserQuotesInstrumentedTest", "checkDBSize: " + appDB.userQuotes().getAllFavorites(userId).size());
-        Log.d("UserQuotesInstrumentedTest", "checkDBSize: " + appDB.userQuotes().getAllFavorites(userId).toString());
-        assertEquals(1, appDB.userQuotes().getAllFavorites(userId).size());
+        int userId = id1;
+        Log.d("UserQuotesInstrumentedTest", "checkDBSize: " + appDB.userQuotes().getAllFavorites().size());
+        Log.d("UserQuotesInstrumentedTest", "checkDBSize: " + appDB.userQuotes().getAllFavorites().toString());
+
+        assertEquals(1, appDB.userQuotes().getUserFavorites(userId).size());
+        assertEquals(1, appDB.userQuotes().getAllFavorites().size());
         /** currently fails as the DB does not start from scratch on app startup */
     }
 
     @Test
     public void checkInsert(){
-        int userId = 2;
+        useAppContext();
+        int userId = id2;
+
         UserQuotesEntity quote = new UserQuotesEntity(userId,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!");
         appDB.userQuotes().insertFavorite(quote);
-        assertEquals(2, appDB.userQuotes().getAllFavorites(userId).size());
+
+        assertEquals(2, appDB.userQuotes().getAllFavorites().size());
+        assertEquals(1, appDB.userQuotes().getUserFavorites(userId).size());
+        assertEquals(1,appDB.userQuotes().getUserFavorites(id1).size());
     }
 
     @Test
     public void checkDelete(){
-        int userId = 2;
-        appDB.userQuotes().delete(new UserQuotesEntity(userId,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!"));
-        assertEquals(1, appDB.userQuotes().getAllFavorites(userId).size());
+        useAppContext();
+        int userId = id2;
+
+        UserQuotesEntity quote = new UserQuotesEntity(userId,"Naruto", "Naruto Uzumaki", "I will be Hokage, believe it!");
+        appDB.userQuotes().insertFavorite(quote);
+        assertEquals(2, appDB.userQuotes().getAllFavorites().size());
+
+        appDB.userQuotes().delete(quote);
+        assertEquals(1, appDB.userQuotes().getAllFavorites().size());
     }
 }

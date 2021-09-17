@@ -9,8 +9,11 @@ import java.util.List;
 
 @Dao
 public interface UserQuotesDAO {
+    @Query("SELECT * FROM tblUserQuotes")
+    List<UserQuotesEntity> getAllFavorites();
+
     @Query("SELECT * FROM tblUserQuotes WHERE userID = :userId")
-    List<UserQuotesEntity> getAllFavorites(int userId);
+    List<UserQuotesEntity> getUserFavorites(int userId);
 
     @Insert
     void insertFavorite(UserQuotesEntity... userQuote);
@@ -18,5 +21,9 @@ public interface UserQuotesDAO {
     @Delete
     void delete(UserQuotesEntity quote);
 
+    @Query("DELETE FROM tblUserQuotes WHERE userID = :userId")
+    void deleteUserFavorites(int userId);
 
+    @Query("DELETE FROM tblUserQuotes")
+    void deleteAllFavorites();
 }
