@@ -20,7 +20,7 @@ public class UserQuotesEntityAdapter extends RecyclerView.Adapter<UserQuotesEnti
     @Override
     public UserQuotesEntityHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from((parent.getContext()))
-                .inflate(R.layout.item, parent, false);
+                .inflate(R.layout.item_no_button, parent, false);
 
         return new UserQuotesEntityAdapter.UserQuotesEntityHolder(itemView);
     }

@@ -72,4 +72,9 @@ public class UserQuotesEntity {
         this.quote = quote;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%d> %s> %s> %s", userID, charName, title, quote);
+    }
+
 }
