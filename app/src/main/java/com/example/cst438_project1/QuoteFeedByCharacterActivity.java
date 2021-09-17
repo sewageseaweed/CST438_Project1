@@ -107,7 +107,7 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
         textView = parent.findViewById(R.id.item_quote);
         String quote = textView.getText().toString();
 
-        UserQuotesEntity userFavorite = new UserQuotesEntity(1,anime, charName, quote);
+        UserQuotesEntity userFavorite = new UserQuotesEntity(userId,anime, charName, quote);
         appDb.userQuotes().insertFavorite(userFavorite);
 
         int length = Toast.LENGTH_LONG;
