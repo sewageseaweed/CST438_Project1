@@ -31,6 +31,8 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quote_feed_by_anime);
 
+        int userId = getIntent().getIntExtra("userId", -1);
+
         RecyclerView recyclerView = findViewById(R.id.quoteFeedByAnime_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         final QuoteAdapter quoteAdapter = new QuoteAdapter();
@@ -60,7 +62,7 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
         btn10rand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextActivity("10rand");
+                nextActivity("10rand", userId);
             }
         });
 
@@ -68,7 +70,7 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
         btnByCharacter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextActivity("byCharacter");
+                nextActivity("byCharacter", userId);
             }
         });
 
@@ -76,12 +78,13 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextActivity("signOut");
+                nextActivity("signOut", userId);
             }
         });
     }
 
     public void favoriteQuote(View view){
+        int userId = getIntent().getIntExtra("userId", -1);
         String TAG = "Favorite Quote";
         AppDatabase appDb = AppDatabase.getDbInstance(this);
 
@@ -104,6 +107,7 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
         toast.show();
 
         Log.d(TAG, "favoriteQuote: " + anime);
+        Log.d(TAG, "UserID: " + userId);
 
     }
 
@@ -113,16 +117,18 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
         return intent;
     }
 
-    public void nextActivity(String choice) {
+    public void nextActivity(String choice, int userId) {
         Intent intent = new Intent();
 
-        if (choice.equals("10rand")) {
-            intent = QuoteFeedActivity.getIntent(getApplicationContext());
+        if (choice.equals("byAnime")) {
+            intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
         } else if (choice.equals("byCharacter")) {
             intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
         } else if (choice.equals("signOut")) {
             intent = MainActivity.getIntent(getApplicationContext());
         }
+
+        intent.putExtra("userId", userId);
 
         startActivity(intent);
     }
