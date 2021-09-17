@@ -120,8 +120,8 @@ public class QuoteFeedByAnimeActivity extends AppCompatActivity{
     public void nextActivity(String choice, int userId) {
         Intent intent = new Intent();
 
-        if (choice.equals("byAnime")) {
-            intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
+        if (choice.equals("10rand")) {
+            intent = QuoteFeedActivity.getIntent(getApplicationContext());
         } else if (choice.equals("byCharacter")) {
             intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
         } else if (choice.equals("signOut")) {

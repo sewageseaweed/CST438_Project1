@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/userQuoteFavorite_searchByBar">
+
+        <Button
+            android:id="@+id/userQuoteFavorite_button_btnSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign out"
+            android:layout_alignParentStart="true"
+            android:padding="8dp"
+            android:layout_marginStart="8dp" />
+
+        <TextView
+            android:id="@+id/userQuoteFavorite_textView_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/userQuoteFavorite_text_placeholder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAlignment="center"
+            android:padding="8dp"
+            android:layout_toEndOf="@id/userQuoteFavorite_button_btnSignOut"
+            android:layout_marginEnd="8dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/quoteFeed_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userQuoteFavorite_textView_title"
+            android:layout_above="@id/userQuoteFavorite_searchByBar"
+            android:layout_marginTop="8dp"
+            tools:listitem="@layout/item_no_button"/>
+
+        <LinearLayout
+            android:id="@+id/userQuoteFavorite_searchByBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#ede7f6">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/userQuoteFavorite_textView_findNewQuotes_prompt"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/userQuoteFavorite_button_searchByAnime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quoteFeed_button_byAnime"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/userQuoteFavorite_button_searchByCharacter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quoteFeed_button_byCharacter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/userQuoteFavorite_button_10rand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quoteFeedByAnime_button_10random"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

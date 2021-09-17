@@ -52,4 +52,7 @@
         <item name="Ciel Phantomhive">Ciel Phantomhive</item>
         <item name="Kurama">Kurama</item>
     </string-array>
+
+    <string name="userQuoteFavorite_text_placeholder">placeholder</string>
+    <string name="userQuoteFavorite_textView_findNewQuotes_prompt">Add Quotes</string>
 </resources>
