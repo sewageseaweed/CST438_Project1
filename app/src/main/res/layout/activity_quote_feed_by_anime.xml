@@ -55,13 +55,22 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="#ede7f6">
+
+            <Button
+                android:id="@+id/quoteFeedByAnime_button_btnFavorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userQuoteFavorite_button_viewFavorites"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeed_textView_Searchby_prompt"
-                android:textSize="20sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:layout_marginRight="8dp"/>
 
             <Button
@@ -69,12 +78,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeedByAnime_button_10random"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_marginRight="8dp"/>
 
             <Button
                 android:id="@+id/quoteFeedByAnime_button_searchByCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:text="@string/quoteFeed_button_byCharacter"/>
         </LinearLayout>
     </RelativeLayout>

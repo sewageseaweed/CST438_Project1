@@ -55,4 +55,5 @@
 
     <string name="userQuoteFavorite_text_placeholder">placeholder</string>
     <string name="userQuoteFavorite_textView_findNewQuotes_prompt">Add Quotes</string>
+    <string name="userQuoteFavorite_button_viewFavorites">Favorites</string>
 </resources>
