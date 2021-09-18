@@ -48,27 +48,38 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="#ede7f6">
+
+            <Button
+                android:id="@+id/quoteFeed_button_btnFavorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userQuoteFavorite_button_viewFavorites"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeed_textView_Searchby_prompt"
-                android:textSize="20sp"
-                android:layout_marginEnd="10dp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginEnd="8dp"/>
 
             <Button
                 android:id="@+id/quoteFeed_button_searchByAnime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quoteFeed_button_byAnime"
-                android:layout_marginEnd="10dp"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:layout_marginEnd="8dp"/>
 
             <Button
                 android:id="@+id/quoteFeed_button_searchByCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quoteFeed_button_byCharacter"/>
+                android:text="@string/quoteFeed_button_byCharacter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
         </LinearLayout>
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CST438_Project1">
         <activity
+            android:name=".UserFavoriteQuoteActivity"
+            android:exported="true" />
+        <activity
             android:name=".Homepage"
             android:exported="true" />
         <activity

@@ -81,6 +81,14 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
                 nextActivity("signOut", userId);
             }
         });
+
+        final Button btnUserFavorites = findViewById(R.id.quoteFeedByCharacter_button_btnFavorites);
+        btnUserFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextActivity("userFavorites", userId);
+            }
+        });
     }
 
     public void favoriteQuote(View view){
@@ -99,7 +107,7 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
         textView = parent.findViewById(R.id.item_quote);
         String quote = textView.getText().toString();
 
-        UserQuotesEntity userFavorite = new UserQuotesEntity(1,anime, charName, quote);
+        UserQuotesEntity userFavorite = new UserQuotesEntity(userId,anime, charName, quote);
         appDb.userQuotes().insertFavorite(userFavorite);
 
         int length = Toast.LENGTH_LONG;
@@ -122,13 +130,17 @@ public class QuoteFeedByCharacterActivity extends AppCompatActivity {
 
         if (choice.equals("byAnime")) {
             intent = QuoteFeedByAnimeActivity.getIntent(getApplicationContext());
-        } else if (choice.equals("byCharacter")) {
-            intent = QuoteFeedByCharacterActivity.getIntent(getApplicationContext());
+        } else if (choice.equals("10rand")) {
+            intent = QuoteFeedActivity.getIntent(getApplicationContext());
         } else if (choice.equals("signOut")) {
             intent = MainActivity.getIntent(getApplicationContext());
+        } else if(choice.equals("userFavorites")) {
+            intent = UserFavoriteQuoteActivity.getIntent(getApplicationContext());
         }
 
-        intent.putExtra("userId", userId);
+        if (!choice.equals("signOut")) {
+            intent.putExtra("userId", userId);
+        }
 
         startActivity(intent);
     }
